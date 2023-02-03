@@ -6,6 +6,8 @@ namespace Engarde_Synthesis.Settings
     {
         [SynthesisSettingName("Weapon speed multiplier")]
         public float weaponSpeedMult { get; set; } = 1f;
+        [SynthesisSettingName("Revert WACCF Greatsword Speeds")]
+        public bool overrideSpeed {  get; set; } = true;
         [SynthesisSettingName("Weapon reach multiplier")]
         [SynthesisTooltip("0.7 is recommended for 3rd person, 1.0 for 1st")]
         public float weaponReachMult { get; set; } = 0.7f;

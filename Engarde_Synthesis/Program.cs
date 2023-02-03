@@ -158,8 +158,18 @@ namespace Engarde_Synthesis
             }
 
             weaponCopy.BasicStats!.Damage = (ushort) Math.Round(weaponCopy.BasicStats.Damage * damageMult);
-            weaponCopy.Data.Speed *= speedMult;
-            weaponCopy.Data.Reach *= reachMult;
+            if (_settings.Value.weaponSettings.overrideSpeed)
+            {
+                if ( (weaponCopy.Data.AnimationType == WeaponAnimationType.TwoHandSword || weaponCopy.Data.AnimationType == WeaponAnimationType.TwoHandAxe ) && weaponCopy.HasKeyword(Skyrim.Keyword.WeapTypeGreatsword))
+                {
+                    weaponCopy.Data.Speed = (weaponCopy.Data.Speed - .1f) * speedMult;
+                }
+            }
+            else
+            {
+                weaponCopy.Data.Speed *= speedMult;
+                weaponCopy.Data.Reach *= reachMult;
+            }
             weaponCopy.SetStagger(defaultWeight, staggerMult);
             weaponCopy.Critical ??= new CriticalData();
             weaponCopy.Critical.Damage = (ushort) Math.Round(weaponCopy.BasicStats!.Damage *
